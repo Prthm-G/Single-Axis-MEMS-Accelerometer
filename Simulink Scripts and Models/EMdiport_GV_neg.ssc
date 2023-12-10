@@ -1,0 +1,68 @@
+component EMdiport_GV_neg
+% EMdiport_GV_neg : 1 : rotation
+% Electromechanical capacitance (Diport)
+% This block embodies a pair of gap-varying fixed & movable capacitor plates in which one is moved away from the other.
+% The velocity & voltage are taken to be the across element while force and current are through elements.    
+% This block is created using the charge and energy conservation equations of the electromechanical system.    
+% Ports e+ & e- denote the positive and negative ports of electrical domain respectively.
+% Ports m+ & m- denote the positive and negative ports of mechanical domain respectively.
+% Adjust the parameters, Co and do as per system specifications. Set the initial values of variables appropriately.
+
+    nodes
+        pe = foundation.electrical.electrical; % e+:right
+        ne = foundation.electrical.electrical; % e-:right
+        pm = foundation.mechanical.translational.translational; % m+:left
+        nm = foundation.mechanical.translational.translational; % m-:left
+    end
+    
+    parameters
+        Co = {3.4e-13 , 'F'};      % Nominal capacitance, Co
+        do = {3.5e-6 , 'm'};          % Initial gap, do
+    end
+         
+    variables
+         u = {0 , 'V'};     % Voltage across capacitor plates
+         i = {0 , 'A'};     % Current through capacitor plates
+         v = {0 , 'm*s^-1'};% Velocity across the system
+         f = {0 , 'N'};     % Force through the system
+         x = {0 , 'm'};     % Displacement of the proofmass
+         del_C = {0 , 'F*m^-1'};    % dC/dx  
+    end
+           
+    branches
+        i : pe.i -> ne.i;     % i - Through variable from pe to ne
+        f : pm.f -> nm.f;     % f - Through variable from pm to nm
+    end
+    
+    function setup
+        Min_cap = {0, 'F' };    % Lower limit for capacitance
+        Min_gap = {1e-6, 'm' }; % Least gap between the plates 
+        
+        if Co < Min_cap
+            warning( 'Co is less than zero. Overriding with Co=0' );
+            Co == Min_cap;
+        end
+        if do < Min_gap
+            warning( 'Gap distance is less than 1Micron. Overriding with do=1Micron' );
+            do == Min_gap;
+        end
+    end
+    
+    outputs
+        dc = {0, 'F*s^-1'};  
+        C = {0 , 'F'};     % C(t)
+    end
+     
+    equations
+        u == pe.v - ne.v;       % u - Across variable between pe & ne
+        v == pm.v - nm.v;       % v - Across variable between pm & nm
+        
+        dc == C.der;                % Change in C - dC/dt
+        x.der + 0 == v;             % Integ(v) == displacement    
+        C == Co/(1+(x/do));         % C(t) - Instantaneous capacitance
+        del_C == -Co/(do*(1+x/do)^2);  % dC(x)/dx
+
+        i == u*v*del_C + C*u.der;   % Charge conservation equation
+        f == (-0.5*(u^2)*del_C);    % Energy conservation equation
+    end
+end

@@ -1,0 +1,16 @@
+[StartTime]
+MEMS_1-Static 4.MFC=5s
+[SolverState]
+MEMS_1-Static 4.MFC=2
+[MainFrame]
+MEMS_1-Static 4.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMEDAAAAAHNBAAAAAELEAAAAAKKCAAAAA
+[ShowMin]
+MEMS_1-Static 4.MFC=No
+[SolverType]
+MEMS_1-Static 4.MFC=Linear Analysis
+[StudyType]
+MEMS_1-Static 4.MFC=0
+[StudyName]
+MEMS_1-Static 4.MFC=Static 4
+[Solver]
+MEMS_1-Static 4.MFC=Sparse

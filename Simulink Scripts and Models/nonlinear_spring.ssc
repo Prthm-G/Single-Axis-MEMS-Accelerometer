@@ -1,0 +1,29 @@
+component nonlinear_spring < foundation.mechanical.translational.branch
+% nonlinear_spring : 0.2 : rotation
+% This non-linear spring acts as a mechanical stopper positioned at dstop
+% Set the spring constant, k as per the system requirement. Adjust the parameter, dstop to position the mechanical stopper.
+
+
+    parameters
+        k = { 52, 'N/m' };     % Spring constant
+        dstop = { 2.333e-6, 'm'};   % Stopper position
+    end
+
+    variables
+        x = { value = { 0, 'm'}, priority = priority.high };   % Displacement 
+    end
+
+    equations
+        v == x.der;         % Declaring value for x
+    
+        if f > k*dstop
+            x == dstop;     % No Pull-in
+        elseif f < -k*dstop
+            x == -dstop;    % Stopper at the negative side
+        else
+            x == f/k;       % Stopper at the positive side
+        end
+    end
+
+end
+

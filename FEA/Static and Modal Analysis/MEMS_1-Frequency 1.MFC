@@ -1,0 +1,16 @@
+[StartTime]
+MEMS_1-Frequency 1.MFC=
+[SolverState]
+MEMS_1-Frequency 1.MFC=2
+[MainFrame]
+MEMS_1-Frequency 1.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMEDAAAAAHNBAAAAAELEAAAAAKKCAAAAA
+[ShowMin]
+MEMS_1-Frequency 1.MFC=yes
+[SolverType]
+MEMS_1-Frequency 1.MFC=Linear Analysis
+[StudyType]
+MEMS_1-Frequency 1.MFC=-1
+[StudyName]
+[Solver]
+MEMS_1-Frequency 1.MFC=Sparse
+[StudyName1]

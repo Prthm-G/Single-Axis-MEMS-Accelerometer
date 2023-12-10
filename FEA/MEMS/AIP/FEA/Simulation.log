@@ -1,0 +1,21 @@
+﻿Study Static Analysis:1 started: 12/3/2023, 8:57:07 PM
+Number of configurations: 1
+Default mesh: 15460 elements, 33899 nodes
+Study Static Analysis:1 finished: 12/3/2023, 8:57:40 PM
+Total time 0:00:33
+
+Study Static Analysis:1 started: 12/3/2023, 9:02:02 PM
+Number of configurations: 1
+Default mesh: 15460 elements, 33899 nodes
+Study Static Analysis:1 finished: 12/3/2023, 9:02:32 PM
+Total time 0:00:30
+
+Study Static Analysis:1 started: 12/3/2023, 9:03:46 PM
+Number of configurations: 1
+Default mesh: 15460 elements, 33899 nodes
+Solution time 118s
+Convergence rate: 50%
+Reached the total number of h refinements 
+Study Static Analysis:1 finished: 12/3/2023, 9:05:45 PM
+Total time 0:01:59
+
